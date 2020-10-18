@@ -1,0 +1,109 @@
+extends base
+block content
+    main.main
+        .card-container
+            each tour in tours
+                .card
+                    .card__header
+                        .card__picture
+                            .card__picture-overlay &nbsp;
+                            img(src=`img/tours/${tour.imageCover}`, alt=`${tour.name}`).card__picture-img
+                        h3.heading-tertirary
+                            span=tour.name
+                    .card__details
+                        h4.card__sub-heading= `${tour.difficulty} ${tour.duration} days `
+                        p.card__text= tour.summary
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='img/icons.svg#icon-flag')
+                            sapn= tour.startLocation.description
+                        .card__data
+                            svg.card__icon
+                                use
+                                use(xlink:href='img/icons.svg#icon-calendar')
+                            sapn= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href="img/icons.svg#icon-flag")
+                            sapn= `${tour.locations.length} steps`
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href="img/icons.svg#icon-user")
+                            sapn= `${tour.maxGroupSize} People`
+                    .card__footer
+                        p
+                            sapn.card__footer-value= `$${tour.price}`
+                            //- this mark for space | then blank
+                            | 
+                            span.card__footer-text  per person
+                        p.card__ratings
+                            span.card__footer-value=tour.ratingsAverage  
+                            | 
+                            span.card__footer-text= `rating (${tour.ratingsQuantity})`
+                        a(href=`/tour/${tour.slug}`).btn.btn--green.btn--small Details
+
+
+
+
+
+//-  <main class="main">
+//-       <div class="card-container">
+//-         <div class="card">
+//-           <div class="card__header">
+//-             <div class="card__picture">
+//-               <div class="card__picture-overlay">&nbsp;</div>
+//-               <img
+//-                 src="img/tour-1-cover.jpg"
+//-                 alt="Tour 1"
+//-                 class="card__picture-img"
+//-               />
+//-             </div>
+
+//-             <h3 class="heading-tertirary">
+//-               <span>The Forest Hiker</span>
+//-             </h3>
+//-           </div>
+
+//-           <div class="card__details">
+//-             <h4 class="card__sub-heading">Easy 5-day tour</h4>
+//-             <p class="card__text">
+//-               Breathtaking hike through the Canadian Banff National Park
+//-             </p>
+//-             <div class="card__data">
+//-               <svg class="card__icon">
+//-                 <use xlink:href="img/icons.svg#icon-map-pin"></use>
+//-               </svg>
+//-               <span>Banff, Canada</span>
+//-             </div>
+//-             <div class="card__data">
+//-               <svg class="card__icon">
+//-                 <use xlink:href="img/icons.svg#icon-calendar"></use>
+//-               </svg>
+//-               <span>April 2021</span>
+//-             </div>
+//-             <div class="card__data">
+//-               <svg class="card__icon">
+//-                 <use xlink:href="img/icons.svg#icon-flag"></use>
+//-               </svg>
+//-               <span>3 stops</span>
+//-             </div>
+//-             <div class="card__data">
+//-               <svg class="card__icon">
+//-                 <use xlink:href="img/icons.svg#icon-user"></use>
+//-               </svg>
+//-               <span>25 people</span>
+//-             </div>
+//-           </div>
+
+//-           <div class="card__footer">
+//-             <p>
+//-               <span class="card__footer-value">$297</span>
+//-               <span class="card__footer-text">per person</span>
+//-             </p>
+//-             <p class="card__ratings">
+//-               <span class="card__footer-value">4.9</span>
+//-               <span class="card__footer-text">rating (21)</span>
+//-             </p>
+//-             <a href="#" class="btn btn--green btn--small">Details</a>
+//-           </div>
+//-         </div>

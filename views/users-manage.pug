@@ -1,0 +1,45 @@
+extends base
+mixin navItem(link,text,icon, active)
+    li(class=`${active ? 'side-nav--active':''}`)
+        a(href=`${link}`)
+            svg
+                use(xlink:href=`/img/icons.svg#${icon}`)
+            | #{text}
+block content
+    main.main
+        .user-view
+            nav.user-view__menu
+                ul.side-nav
+                    +navItem('#','Sittings','sittings',true)
+                    +navItem('/my-tour','My Bookings','briefcase')
+                    +navItem('#','My Reviews','star')
+                    +navItem('#','Billing','credit-card')
+                - if (user.role === 'admin')
+                    .admin-nav
+                        h5.admin-nav__heading Admin
+                        ul.side-nav
+                            +navItem('#', 'Manage tours', 'map')
+                            +navItem('/manage-users', 'Manage users', 'users')
+                            +navItem('#', 'Manage reviews', 'star')
+                            +navItem('#', 'Manage bookings', 'briefcase')
+
+            .user-view__content
+                .user-view__form-container
+                    h2.heading-secondary.ma-bt-md Add New User
+                    form.form.form-user-data
+                        .form__group
+                            label.form__label(for='name') Name
+                            input#name_new_user.form__input(type='text',required, name='name', placeholder='User Name')
+                            .form__group.ma-bt-md
+                                label.form__label(for='email') Email address
+                                input#email_new_user.form__input(type='email', required, name='email',placeholder='User Email')
+                            .form__group.ma-bt-md
+                                label.form__label(for='passowrd') Password
+                                input#password_new_user.form__input(type='password', required, name='password',placeholder='*********')
+                            .form__group.ma-bt-md
+                                label.form__label(for='passowrd') PasswordConfirm
+                                input#passwordC_new_user.form__input(type='password', required, name='passwordConfirm',placeholder='*********')
+                            .form__group.right
+                                button#add_new_user.btn.btn--small.btn--green Add New User
+                            .form__group.right
+                                button#users_here.btn.btn--small.btn--green Get Users
